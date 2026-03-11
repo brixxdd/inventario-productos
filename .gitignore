@@ -33,3 +33,6 @@ pnpm-debug.log*
 # SO
 .DS_Store
 Thumbs.db
+
+# Otros proyectos accidentales
+mass-friend-request-deleter/
