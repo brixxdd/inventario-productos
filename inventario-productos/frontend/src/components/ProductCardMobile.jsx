@@ -39,9 +39,14 @@ export default function ProductCardMobile({ producto, onEdit, onDelete, onToggle
             </div>
 
             <div className="mt-6 flex items-center justify-between border-t border-black/5 dark:border-white/5 pt-4 relative z-10">
-                <div>
+                <div className="flex flex-col">
                     <span className="text-xs font-semibold uppercase tracking-wider text-gray-400 mb-1 block">Existencias</span>
                     <span className="text-xl font-black text-gray-900 dark:text-gray-100">{producto.existencias} <span className="text-xs font-normal text-gray-500">uds</span></span>
+
+                    <div className="mt-2 flex items-center space-x-1">
+                        <span className="text-[8px] bg-primary-500/10 text-primary-500 px-1.5 py-0.5 rounded uppercase font-bold tracking-tighter">Nodo IP</span>
+                        <code className="text-[10px] text-gray-400 font-mono">{producto.ultimaIP || '0.0.0.0'}</code>
+                    </div>
                 </div>
 
                 <button

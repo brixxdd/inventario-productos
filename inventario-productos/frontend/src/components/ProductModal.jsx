@@ -3,7 +3,7 @@ import { X, Save } from 'lucide-react';
 import api from '../services/api';
 import toast from 'react-hot-toast';
 
-export default function ProductModal({ isOpen, onClose, product, onSave }) {
+export default function ProductModal({ isOpen, onClose, product, onSave, sedeActual }) {
     const [formData, setFormData] = useState({
         nombre: '',
         sede: '',
@@ -19,9 +19,9 @@ export default function ProductModal({ isOpen, onClose, product, onSave }) {
                 existencias: product.existencias
             });
         } else {
-            setFormData({ nombre: '', sede: '', existencias: 0 });
+            setFormData({ nombre: '', sede: sedeActual || '', existencias: 0 });
         }
-    }, [product, isOpen]);
+    }, [product, isOpen, sedeActual]);
 
     if (!isOpen) return null;
 

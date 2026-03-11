@@ -143,6 +143,7 @@ export default function ProductList({ onEdit, refreshTrigger }) {
                                             <th scope="col" className="px-6 py-4 text-left text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider">Producto & Sede</th>
                                             <th scope="col" className="px-6 py-4 text-left text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider">Existencias</th>
                                             <th scope="col" className="px-6 py-4 text-left text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider">Estado</th>
+                                            <th scope="col" className="px-6 py-4 text-left text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider">IP Nodo Origen</th>
                                             <th scope="col" className="relative px-6 py-4 text-right"><span className="sr-only">Acciones</span></th>
                                         </tr>
                                     </thead>
@@ -180,6 +181,11 @@ export default function ProductList({ onEdit, refreshTrigger }) {
                                                             <><CheckCircle size={12} className="mr-1" /> Activo</>
                                                         )}
                                                     </button>
+                                                </td>
+                                                <td className="px-6 py-4 whitespace-nowrap">
+                                                    <code className="text-[10px] bg-gray-100 dark:bg-gray-900 px-2 py-1 rounded text-gray-500 dark:text-gray-400 font-mono">
+                                                        {producto.ultimaIP || '0.0.0.0'}
+                                                    </code>
                                                 </td>
                                                 <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                                     <div className="flex items-center justify-end space-x-2">

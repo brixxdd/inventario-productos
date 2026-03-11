@@ -10,6 +10,7 @@ export default function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editingProduct, setEditingProduct] = useState(null);
   const [refreshTrigger, setRefreshTrigger] = useState(0);
+  const [currentSede, setCurrentSede] = useState(localStorage.getItem('sede_actual') || '');
 
   const [isDarkMode, setIsDarkMode] = useState(() => {
     return window.matchMedia('(prefers-color-scheme: dark)').matches;
@@ -137,7 +138,35 @@ export default function App() {
         onClose={handleCloseModal}
         product={editingProduct}
         onSave={handleSaveProduct}
+        sedeActual={currentSede}
       />
+
+      {/* Sede Selection Overlay */}
+      {!currentSede && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-gray-900/90 backdrop-blur-md animate-in fade-in duration-500">
+          <div className="bg-white dark:bg-gray-900 rounded-3xl p-8 max-w-sm w-full shadow-2xl border border-white/20 text-center transform transition-all animate-in zoom-in-95 duration-300">
+            <div className="w-16 h-16 bg-primary-500 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg shadow-primary-500/30">
+              <Package size={32} className="text-white" />
+            </div>
+            <h2 className="text-2xl font-bold mb-2 dark:text-white">Bienvenido Nodo</h2>
+            <p className="text-gray-500 dark:text-gray-400 mb-8">Selecciona la sede que representa esta computadora en el sistema distribuido.</p>
+            <div className="grid grid-cols-1 gap-3">
+              {['Sede Principal', 'Norte', 'Sur', 'Oriente'].map(sede => (
+                <button
+                  key={sede}
+                  onClick={() => {
+                    localStorage.setItem('sede_actual', sede);
+                    setCurrentSede(sede);
+                  }}
+                  className="w-full py-3 rounded-xl bg-gray-100 dark:bg-gray-800 hover:bg-primary-500 hover:text-white dark:hover:bg-primary-500 transition-all font-semibold dark:text-gray-200"
+                >
+                  {sede}
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
 
     </div>
   );

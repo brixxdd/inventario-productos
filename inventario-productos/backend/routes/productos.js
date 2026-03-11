@@ -5,7 +5,11 @@ const Producto = require('../models/Producto');
 // 1. Registrar productos
 router.post('/', async (req, res) => {
     try {
-        const nuevoProducto = new Producto(req.body);
+        const clientIP = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
+        const nuevoProducto = new Producto({
+            ...req.body,
+            ultimaIP: clientIP
+        });
         const guardado = await nuevoProducto.save();
         res.status(201).json(guardado);
     } catch (error) {
@@ -37,7 +41,9 @@ router.get('/sede/:sede', async (req, res) => {
 router.put('/:id', async (req, res) => {
     try {
         const { existencias, descontinuado } = req.body;
-        const camposParaActualizar = {};
+        const clientIP = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
+
+        const camposParaActualizar = { ultimaIP: clientIP };
         if (existencias !== undefined) camposParaActualizar.existencias = existencias;
         if (descontinuado !== undefined) camposParaActualizar.descontinuado = descontinuado;
 
