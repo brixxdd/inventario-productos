@@ -1,0 +1,39 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-primary-500: oklch(0.55 0.22 260);
+  --color-primary-900: oklch(0.25 0.15 265);
+  --font-sans: 'Geist Sans', system-ui, sans-serif;
+  --radius-md: 0.5rem;
+  --radius-lg: 1rem;
+}
+
+:root {
+  --bg-color: oklch(0.97 0.01 260);
+  --text-color: oklch(0.3 0.05 260);
+  --bg-image: radial-gradient(at 0% 0%, hsla(253, 16%, 7%, 0.03) 0, transparent 50%),
+    radial-gradient(at 50% 0%, hsla(225, 39%, 30%, 0.03) 0, transparent 50%),
+    radial-gradient(at 100% 0%, hsla(339, 49%, 30%, 0.03) 0, transparent 50%);
+}
+
+.dark {
+  --bg-color: oklch(0.18 0.02 260);
+  /* Fondo oscuro muy suave y elegante, con base azulada/violácea */
+  --text-color: oklch(0.92 0.01 260);
+  /* Texto ligeramente más suave, no blanco puro para evitar fatiga */
+  /* Un gradiente de acento súper difuminado para iluminar esquinas por detrás del glassmorphism */
+  --bg-image: radial-gradient(at 10% 20%, hsla(253, 60%, 40%, 0.04) 0, transparent 40%),
+    radial-gradient(at 90% 80%, hsla(339, 60%, 40%, 0.04) 0, transparent 40%);
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  background-image: var(--bg-image);
+  background-attachment: fixed;
+  transition: background-color 0.5s ease, color 0.5s ease;
+}
